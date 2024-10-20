@@ -91,24 +91,37 @@
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#box-arrow-in-right"/></svg> Se connecter
-                </button>
-                <a href="{{ path('register') }}">
-                    <button type="button" class="btn btn-primary">
-                        <svg class="bi" width="16" height="25"><use xlink:href="#person-plus"/></svg> S'inscrire
-                    </button>
-                </a>
-
-            </div>
-            <ul>
-                <li class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
-                        John Doe
+                {% if app.user %}
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+                                {{ app.user.firstName }} {{ app.user.lastName }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('logout') }}">
+                                <button type="button" class="btn btn-outline-light me-2">
+                                    <svg class="bi" width="16" height="16"><use xlink:href="#box-arrow-in-right"/></svg>
+                                    Se déconnecter
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <a href="{{ path('login') }}">
+                        <button type="button" class="btn btn-outline-light me-2">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#box-arrow-in-right"/></svg> Se connecter
+                        </button>
                     </a>
-                </li>
-            </ul>
+
+                    <a href="{{ path('register') }}">
+                        <button type="button" class="btn btn-primary">
+                            <svg class="bi" width="16" height="25"><use xlink:href="#person-plus"/></svg> S'inscrire
+                        </button>
+                    </a>
+                {% endif %}
+            </div>
 
         </div>
     </div>
