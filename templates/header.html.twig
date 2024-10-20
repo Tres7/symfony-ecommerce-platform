@@ -92,22 +92,20 @@
 
             <div class="text-end">
                 {% if app.user %}
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
-                                {{ app.user.firstName }} {{ app.user.lastName }}
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('logout') }}">
-                                <button type="button" class="btn btn-outline-light me-2">
-                                    <svg class="bi" width="16" height="16"><use xlink:href="#box-arrow-in-right"/></svg>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownUserMenu" data-bs-toggle="dropdown" style="border: none" aria-expanded="false">
+                            <svg class="bi" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+                            {{ app.user.firstName }} {{ app.user.lastName }}
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUserMenu">
+                            <li>
+                                <a class="dropdown-item" href="{{ path('logout') }}">
                                     Se déconnecter
-                                </button>
-                            </a>
-                        </li>
-                    </ul>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 {% else %}
                     <a href="{{ path('login') }}">
                         <button type="button" class="btn btn-outline-light me-2">
