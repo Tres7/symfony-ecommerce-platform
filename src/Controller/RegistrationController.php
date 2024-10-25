@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
-            //Par défaut, le rôle user à l'utilisateur
+            //Par défaut, le rôle user à l'utilisateur lors de la création de compte
             $role = ['ROLE_USER'];
 
             // Si le champ 'role' est présent et que l'utilisateur connecté est un administrateur

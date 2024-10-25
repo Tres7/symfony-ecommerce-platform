@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ product is defined ? 'Modifier le produit' : 'Ajouter un nouveau produit' }}</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">{{ product is defined ? 'Mettre à jour' : 'Créer' }}</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('admin_products') }}" class="btn btn-secondary mt-3">Retour à la liste des produits</a>
+{% endblock %}
