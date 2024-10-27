@@ -31,6 +31,12 @@ class AdminController extends AbstractController
         $query = $entityManager->getRepository(User::class)->createQueryBuilder('u')->getQuery();
         $users = $paginator->paginate($query, $request->query->getInt('page', 1), 10);
 
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('error', 'Vous n\'avez pas les droits pour accéder à cette page.');
+            return $this->redirectToRoute('home');
+        }
+
+
         return $this->render('admin/index.html.twig', [
             'users' => $users,
             'controller_name' => 'AdminController',
@@ -40,6 +46,7 @@ class AdminController extends AbstractController
       *affichage de la liste des produits
       */
     #[Route('/admin/products', name: 'admin_products')]
+    #[IsGranted('ROLE_ADMIN')]
     public function listProducts(EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request): Response
     {
         $query = $entityManager->getRepository(Product::class)->createQueryBuilder('p')->getQuery();
@@ -54,6 +61,7 @@ class AdminController extends AbstractController
      * @param EntityManagerInterface $entityManager
      */
     #[Route('/admin/orders', name: 'admin_orders')]
+    #[IsGranted('ROLE_ADMIN')]
     public function listOrders(EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request): Response
     {
         $query = $entityManager->getRepository(Order::class)->createQueryBuilder('o')->getQuery();
@@ -69,6 +77,7 @@ class AdminController extends AbstractController
      * creation d'un nouveau produit
      */
     #[Route('/admin/product/new', name: 'product_new')]
+    #[IsGranted('ROLE_ADMIN')]
     public function createProduct(Request $request, EntityManagerInterface $entityManager): Response
     {
         $product = new Product();
@@ -93,6 +102,7 @@ class AdminController extends AbstractController
      * modification d'un produit
      */
     #[Route('/admin/product/edit/{id}', name: 'product_edit')]
+    #[IsGranted('ROLE_ADMIN')]
     public function editProduct(Product $product, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ProductType::class, $product);
@@ -117,6 +127,7 @@ class AdminController extends AbstractController
      * suppression d'un produit
      */
     #[Route('/admin/product/delete/{id}', name: 'product_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function deleteProduct(Product $product, EntityManagerInterface $entityManager): Response
     {
         //vérifier si le produit est présent dans des commandes

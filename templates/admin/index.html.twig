@@ -21,7 +21,11 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <td>{{ user.roles|join(', ') }}</td>
+                <td>{% if 'ROLE_ADMIN' in user.roles %}
+                        Administrateur
+                    {% else %}
+                        Utilisateur
+                    {% endif %}</td>
             </tr>
         {% endfor %}
         </tbody>

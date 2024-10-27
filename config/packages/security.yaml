@@ -9,6 +9,8 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+
+    access_denied_url: /403
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
