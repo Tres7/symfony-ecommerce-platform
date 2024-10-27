@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Address;
+use App\Entity\Category;
 use App\Entity\Order;
 use App\Entity\OrderItem;
 use App\Entity\Product;
@@ -24,6 +25,19 @@ class ProductFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+
+        $category1 = new Category();
+        $category1->setName('Décoration');
+        $manager->persist($category1);
+
+        $category2 = new Category();
+        $category2->setName('Mobilier');
+        $manager->persist($category2);
+
+        $category3 = new Category();
+        $category3->setName('Électronique');
+        $manager->persist($category3);
+
         // Création de l'utilisateur 1
         $user1 = new User();
         $user1->setEmail('Daniel.gaboucado@gmail.com');
@@ -67,6 +81,7 @@ class ProductFixtures extends Fixture
         $product1->setDescription('Un coussin design parfait pour votre salon.');
         $product1->setStock(50);
         $product1->setStatus(ProductStatus::EN_RUPTURE);
+        $product1->setCategory($category1);
         $manager->persist($product1);
 
         $product2 = new Product();
@@ -75,6 +90,7 @@ class ProductFixtures extends Fixture
         $product2->setDescription('Un vase en céramique fait main pour décorer votre intérieur.');
         $product2->setStock(30);
         $product2->setStatus(ProductStatus::PRECOMMANDE);
+        $product2->setCategory($category2);
         $manager->persist($product2);
 
         // Création d'une adresse pour user1
