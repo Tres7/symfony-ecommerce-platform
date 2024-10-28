@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+
+    <h2>Nombre total de produits par catégorie</h2>
+    <ul>
+        {% for category in productsByCategory %}
+            <li>{{ category.category }}: {{ category.count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Les 5 dernières commandes passées</h2>
+    <ul>
+        {% for order in latestOrders %}
+            <li>Commande #{{ order.id }} - {{ order.createdAt|date('d/m/Y') }} - Statut: {{ order.status.value }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Ratio de disponibilité des produits</h2>
+    <ul>
+        {% for status in productAvailability %}
+            <li>{{ status.status.value }}: {{ status.count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Montant total des ventes réalisées par mois (12 derniers mois)</h2>
+    <ul>
+        {% for sale in monthlySales %}
+            <li>{{ sale.month }}: {{ sale.total_sales }} €</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

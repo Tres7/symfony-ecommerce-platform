@@ -6,6 +6,8 @@ use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Form\ProductType;
+use App\Repository\OrderRepository;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -144,4 +146,24 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin_products');
     }
+
+    // Dans AdminController par exemple
+    #[Route('/admin/dashboard', name: 'admin_dashboard')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function dashboard(ProductRepository $productRepository, OrderRepository $orderRepository): Response
+    {
+        $productsByCategory = $productRepository->countProductsByCategory();
+        $latestOrders = $orderRepository->findLatestOrders();
+        $productAvailability = $productRepository->countProductByStatus();
+        $monthlySales = $orderRepository->salesByMonth();
+
+        return $this->render('admin/dashboard.html.twig', [
+            'productsByCategory' => $productsByCategory,
+            'latestOrders' => $latestOrders,
+            'productAvailability' => $productAvailability,
+            'monthlySales' => $monthlySales,
+        ]);
+    }
+
+
 }

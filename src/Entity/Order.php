@@ -102,7 +102,7 @@ class Order
         return $this->orderItems;
     }
 
-    public function addOrderItem(Orderitem $orderItem): static
+    public function addOrderItem(OrderItem $orderItem): static
     {
         if (!$this->orderItems->contains($orderItem)) {
             $this->orderItems->add($orderItem);
@@ -112,7 +112,7 @@ class Order
         return $this;
     }
 
-    public function removeOrderItem(Orderitem $orderItem): static
+    public function removeOrderItem(OrderItem $orderItem): static
     {
         if ($this->orderItems->removeElement($orderItem)) {
             // set the owning side to null (unless already changed)

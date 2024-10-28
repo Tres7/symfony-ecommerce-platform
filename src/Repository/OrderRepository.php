@@ -40,4 +40,27 @@ class OrderRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findLatestOrders($limit = 5): array
+    {
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.createdAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function salesByMonth()
+    {
+        return $this->createQueryBuilder('o')
+            ->select("SUBSTRING(o.createdAt, 1, 7) as month, SUM(oi.productPrice * oi.quantity) as total_sales")
+            ->join('o.orderItems', 'oi')
+            ->where('o.createdAt >= :lastYear')
+            ->setParameter('lastYear', (new \DateTime())->modify('-1 year'))
+            ->groupBy('month')
+            ->orderBy('month', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

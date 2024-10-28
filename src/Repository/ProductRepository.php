@@ -41,6 +41,10 @@ class ProductRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    /**
+     * get all products with their category
+     * @return array
+     */
     public function countProductsByCategory(): array
     {
         return $this->createQueryBuilder('p')
@@ -50,4 +54,14 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function countProductByStatus(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.status as status, count(p.id) as count')
+            ->groupBy('p.status')
+            ->getQuery()
+            ->getResult();
+    }
+
 }
