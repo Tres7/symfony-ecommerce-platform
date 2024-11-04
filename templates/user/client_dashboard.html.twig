@@ -1,0 +1,27 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tableau de bord - Résumé des commandes</h1>
+
+    <section>
+        <h2>Résumé des commandes</h2>
+        {% if clientOrders is not empty %}
+            <ul>
+                {% for order in clientOrders %}
+                    <li>
+                        <strong>Commande #{{ order.id }}</strong> -
+                        Date : {{ order.createdAt|date('d/m/Y') }} -
+                        Statut : {{ order.status.value }} </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Vous n'avez pas encore passé de commandes.</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>Historique des commandes</h2>
+        <p>Affichage complet de toutes vos commandes passées.</p>
+    </section>
+{% endblock %}

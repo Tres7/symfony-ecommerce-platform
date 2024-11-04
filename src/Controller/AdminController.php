@@ -164,6 +164,4 @@ class AdminController extends AbstractController
             'monthlySales' => $monthlySales,
         ]);
     }
-
-
 }
