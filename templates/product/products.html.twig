@@ -11,6 +11,7 @@
             <th>Prix</th>
             <th>Quantité</th>
             <th>Catégorie</th>
+            <th>Image</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -22,6 +23,11 @@
                 <td>{{ product.price }} €</td>
                 <td>{{ product.stock }}</td>
                 <td>{{ product.category.name }} ({{ product.category.id }})</td>
+                <td>
+                    {% for image in product.images %}
+                        <img src="{{ asset('uploads/images/' ~ image.url) }}" alt="Image de {{ product.name }}" width="50" class="img-thumbnail mb-2">
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
 {#                    <a href="{{ path('product_delete', {'id': product.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>#}

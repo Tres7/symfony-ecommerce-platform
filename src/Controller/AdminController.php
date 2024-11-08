@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
@@ -54,7 +55,7 @@ class AdminController extends AbstractController
         $query = $entityManager->getRepository(Product::class)->createQueryBuilder('p')->getQuery();
         $products = $paginator->paginate($query, $request->query->getInt('page', 1), 10);
 
-        return $this->render('admin/products.html.twig', [
+        return $this->render('product/products.html.twig', [
             'products' => $products,
         ]);
     }
@@ -69,7 +70,7 @@ class AdminController extends AbstractController
         $query = $entityManager->getRepository(Order::class)->createQueryBuilder('o')->getQuery();
         $orders = $paginator->paginate($query, $request->query->getInt('page', 1), 10);
 
-        return $this->render('admin/orders.html.twig', [
+        return $this->render('order/orders.html.twig', [
             'orders' => $orders,
         ]);
     }
@@ -87,7 +88,27 @@ class AdminController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // Persist the product initially to assign an ID if needed
             $entityManager->persist($product);
+            $entityManager->flush();
+
+            $image = $form->get('images')->getData();
+            if ($image) {
+                $newFilename = uniqid('', true) . '.' . $image->guessExtension();
+
+                // Déplace le fichier dans le répertoire d'upload
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+
+                $image = new Image();
+                $image->setUrl($newFilename);
+                $image->setProduct($product);
+                $entityManager->persist($image);
+            }
+
+            // Final flush after all images are set
             $entityManager->flush();
 
             $this->addFlash('success', 'Produit ajouté avec succès.');
@@ -100,6 +121,7 @@ class AdminController extends AbstractController
         ]);
     }
 
+
     /**
      * modification d'un produit
      */
@@ -111,6 +133,21 @@ class AdminController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('images')->getData();
+
+            foreach ($images as $imageFile) {
+                $newFilename = uniqid('', true) . '.' . $imageFile->guessExtension();
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+
+                $image = new Image();
+                $image->setUrl($newFilename);
+                $image->setProduct($product);
+                $entityManager->persist($image);
+            }
+
             $entityManager->flush();
 
             $this->addFlash('success', 'Produit modifié avec succès.');
@@ -125,6 +162,7 @@ class AdminController extends AbstractController
     }
 
 
+
     /**
      * suppression d'un produit
      */
@@ -136,6 +174,11 @@ class AdminController extends AbstractController
         if (!$product->getOrderItems()->isEmpty()) {
             $this->addFlash('error', 'Impossible de supprimer ce produit car il est déjà présent dans des commandes.');
             return $this->redirectToRoute('admin_products');
+        }
+
+        foreach ($product->getImages() as $image) {
+            unlink($this->getParameter('images_directory').'/'.$image->getUrl());
+            $entityManager->remove($image);
         }
 
         //sinon on peut supprimer le produit
