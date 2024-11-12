@@ -47,6 +47,10 @@
         <path fill-rule="evenodd" d="M8 9a5 5 0 0 0-4.546 2.916c-.275.546.172 1.084.746 1.084H11.8c.574 0 1.021-.538.746-1.084A5 5 0 0 0 8 9z"/>
         <path fill-rule="evenodd" d="M13.5 8a.5.5 0 0 1 .5.5v1.5h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V11h-1.5a.5.5 0 0 1 0-1H13V8.5a.5.5 0 0 1 .5-.5z"/>
     </symbol>
+    <symbol id="cart" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+    </symbol>
+
 </svg>
 
 <header class="p-3 text-bg-dark">
@@ -78,7 +82,9 @@
                         A propos
                     </a>
                 </li>
-{#                <li>#}
+
+
+                {#                <li>#}
 {#                    <a href="#" class="nav-link text-white">#}
 {#                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>#}
 {#                        Clients#}
@@ -112,7 +118,6 @@
                             <svg class="bi" width="16" height="16"><use xlink:href="#box-arrow-in-right"/></svg> Se connecter
                         </button>
                     </a>
-
                     <a href="{{ path('register') }}">
                         <button type="button" class="btn btn-primary">
                             <svg class="bi" width="16" height="25"><use xlink:href="#person-plus"/></svg> S'inscrire
@@ -120,7 +125,14 @@
                     </a>
                 {% endif %}
             </div>
-
+            <a href="{{ path('cart_show') }}" class="nav-link">
+                <svg class="bi" width="25" height="25">
+                    <use xlink:href="#cart"></use>
+                </svg>
+                {% if totalItems|default(0) > 0 %}
+                    <span id="cart-count" class="badge bg-danger">{{ totalItems|default(0) }}</span>
+                {% endif %}
+            </a>
         </div>
     </div>
 </header>

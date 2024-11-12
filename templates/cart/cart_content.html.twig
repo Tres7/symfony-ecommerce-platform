@@ -1,0 +1,25 @@
+<table class="table">
+    <tr>
+        <th>Produit</th>
+        <th>Quantité</th>
+        <th>Prix</th>
+        <th>Actions</th>
+    </tr>
+    {% set total = 0 %}
+    {% for item in cartDetails %}
+        <tr data-product-id="{{ item.product.id }}">
+            <td>{{ item.product.name }}</td>
+            <td>
+                <button class="btn btn-sm btn-outline-secondary btn-decrease">-</button>
+                {{ item.quantity }}
+                <button class="btn btn-sm btn-outline-secondary btn-increase">+</button>
+            </td>
+            <td>{{ item.product.price * item.quantity }} €</td>
+            <td>
+                <button class="btn btn-danger btn-remove">🗑️</button>
+            </td>
+        </tr>
+        {% set total = total + (item.product.price * item.quantity) %}
+    {% endfor %}
+</table>
+<h3>Total : {{ total }} €</h3>

@@ -15,17 +15,16 @@ class DashboardRedirectController extends AbstractController
     public function redirectToDashboard(): Response
     {
         //verify that the user is authenticated
-        if ($this->isGranted('ROLE_ADMIN'))
-        {
+        if ($this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('admin_dashboard');
         }
-        elseif ($this->isGranted('ROLE_USER'))
-        {
+
+        if ($this->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('client_dashboard');
         }
 
         // redirect to login page if user is not authenticated
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('login');
     }
 }
 
