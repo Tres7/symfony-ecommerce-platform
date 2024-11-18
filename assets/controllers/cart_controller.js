@@ -91,11 +91,28 @@ export default class extends Controller {
                 this.updateRowSubtotal(productId, data.subtotal);
                 this.updateCartTotal(data.cartTotal);
                 this.updateCartCount(data.totalItems);
+
+                // Si la quantité est 0, retirez la ligne du tableau
+                if (data.quantity === 0) {
+                    this.removeRow(productId);
+                }
+            } else {
+                console.error(`Error: ${data.message}`);
             }
         } catch (error) {
             console.error("Error updating quantity:", error);
         }
     }
+    removeRow(productId) {
+        const row = document.querySelector(`tr[data-product-id="${productId}"]`);
+        if (row && row.parentNode) {
+            row.remove();
+        } else {
+            console.warn(`Row for product ID ${productId} does not exist or is not in the DOM`);
+        }
+    }
+
+
 
     updateRowQuantity(productId, quantity) {
         const row = document.querySelector(`[data-product-id="${productId}"]`);

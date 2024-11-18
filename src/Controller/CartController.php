@@ -43,40 +43,42 @@ class CartController extends AbstractController
 //        return $this->redirectToRoute('home');
 //    }
     #[Route('/cart/add/{id}', name: 'cart_add')]
-    public function add(
-        Product $product,
-        Request $request,
-        SessionInterface $session,
-        ProductRepository $productRepository
-    ): JsonResponse {
-        // Récupérer le panier de la session ou un tableau vide si le panier n'existe pas
+    public function add(Product $product,Request $request,SessionInterface $session,ProductRepository $productRepository):JsonResponse
+    {
+        /// take the cart from the session
         $cart = $session->get('cart', []);
         $id = $product->getId();
 
-        // Ajouter ou incrémenter le produit dans le panier
         if (!empty($cart[$id])) {
-            $cart[$id]++;
-        } else {
-            $cart[$id] = 1;
-        }
+            if($cart[$id] < $product->getStock())
+            {
+                $cart[$id]++;
+            } else
+            {
+                $this->addFlash('error', 'Le stock du produit ' . $product->getName() . ' est insuffisant.');
+            }
 
-        // Mettre à jour la session avec le nouveau panier
+        } else {
+            if ($product->getStock() > 0) {
+                $cart[$id] = 1;
+            } else {
+                $this->addFlash('error', 'Le stock du produit ' . $product->getName() . ' est insuffisant.');
+            }
+        }
+        // update the cart in the session
         $session->set('cart', $cart);
 
-        // Utiliser la méthode utilitaire `getCartDetails` pour calculer les détails du panier
         $cartDetails = $this->getCartDetails($session, $productRepository);
 
-        // Rendre une vue partielle pour mettre à jour le panier dynamiquement si nécessaire
         $cartHtml = $this->renderView('cart/cart_content.html.twig', [
             'cartDetails' => $cartDetails['items'],
             'total' => $cartDetails['total'],
         ]);
 
-        // Retourner une réponse JSON contenant les informations du panier mises à jour
         return $this->json([
-            'totalItems' => $cartDetails['totalItems'], // Nombre total d'articles
-            'totalPrice' => $cartDetails['total'],     // Total général
-            'cartHtml' => $cartHtml,                   // Vue partielle pour le panier
+            'totalItems' => $cartDetails['totalItems'],
+            'totalPrice' => $cartDetails['total'],
+            'cartHtml' => $cartHtml,
         ]);
     }
 
@@ -169,14 +171,26 @@ class CartController extends AbstractController
      * @return Response
      * increase the quantity of a product in the cart
      **/
-    #[Route('/cart/increase/{id}', name: 'cart_increase')]
+    #[Route('/cart/increase/{id}', name: 'cart_increase', methods: ['POST'])]
     public function increase(Product $product, SessionInterface $session, ProductRepository $productRepository): JsonResponse
     {
         $cart = $session->get('cart', []);
         $productId = $product->getId();
 
-        if (isset($cart[$productId])) {
-            $cart[$productId]++;
+        if (array_key_exists($productId, $cart)) {
+            if ($cart[$productId] < $product->getStock()) {
+                $cart[$productId]++;
+            } else {
+                return $this->json([
+                    'success' => false,
+                    'message' => "Stock insuffisant pour ce produit.",
+                ], 400);
+            }
+        } else {
+            return $this->json([
+                'success' => false,
+                'message' => "Le produit n'existe pas dans le panier.",
+            ], 400);
         }
 
         $session->set('cart', $cart);
@@ -220,10 +234,10 @@ class CartController extends AbstractController
 
         return $this->json([
             'success' => true,
-            'quantity' => $cart[$productId] ?? 0,          // Quantité mise à jour (0 si supprimé)
-            'subtotal' => $cartDetails['items'][$productId]['subtotal'] ?? 0, // Sous-total
-            'cartTotal' => $cartDetails['total'],          // Total général du panier
-            'totalItems' => $cartDetails['totalItems'],    // Nombre total d'articles
+            'quantity' => $cart[$productId] ?? 0,
+            'subtotal' => $cartDetails['items'][$productId]['subtotal'] ?? 0,
+            'cartTotal' => $cartDetails['total'],
+            'totalItems' => $cartDetails['totalItems'],
         ]);
     }
 
