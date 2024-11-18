@@ -1,25 +1,36 @@
-<table class="table">
-    <tr>
-        <th>Produit</th>
-        <th>Quantité</th>
-        <th>Prix</th>
-        <th>Actions</th>
-    </tr>
-    {% set total = 0 %}
-    {% for item in cartDetails %}
-        <tr data-product-id="{{ item.product.id }}">
-            <td>{{ item.product.name }}</td>
-            <td>
-                <button class="btn btn-sm btn-outline-secondary btn-decrease">-</button>
-                {{ item.quantity }}
-                <button class="btn btn-sm btn-outline-secondary btn-increase">+</button>
-            </td>
-            <td>{{ item.product.price * item.quantity }} €</td>
-            <td>
-                <button class="btn btn-danger btn-remove">🗑️</button>
-            </td>
-        </tr>
-        {% set total = total + (item.product.price * item.quantity) %}
-    {% endfor %}
-</table>
-<h3>Total : {{ total }} €</h3>
+<div data-controller="cart">
+    <div class="cart-content">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Sous-total</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in cartDetails %}
+                <tr data-product-id="{{ item.product.id }}">
+                    <td>{{ item.product.name }}</td>
+                    <td>
+                        <button data-action="click->cart#decreaseQuantity" data-product-id="{{ item.product.id }}" class="btn btn-sm btn-outline-danger">-</button>
+                        <span class="quantity">{{ item.quantity }}</span>
+                        <button data-action="click->cart#increaseQuantity" data-product-id="{{ item.product.id }}" class="btn btn-sm btn-outline-success">+</button>
+                    </td>
+                    <td class="subtotal">{{ item.product.price * item.quantity }} €</td>
+                    <td>
+                        <button class="btn btn-danger btn-remove" data-action="click->cart#removeItem" data-product-id="{{ item.product.id }}">🗑️</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2">Total :</td>
+                <td id="cart-total">{{ total }} €</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

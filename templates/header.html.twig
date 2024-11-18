@@ -55,7 +55,7 @@
 
 <header class="p-3 text-bg-dark">
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <div class="d-flex flex-wrap align-items-center justify-content-between" >
 
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>
@@ -82,14 +82,6 @@
                         A propos
                     </a>
                 </li>
-
-
-                {#                <li>#}
-{#                    <a href="#" class="nav-link text-white">#}
-{#                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>#}
-{#                        Clients#}
-{#                    </a>#}
-{#                </li>#}
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -129,9 +121,7 @@
                 <svg class="bi" width="25" height="25">
                     <use xlink:href="#cart"></use>
                 </svg>
-                {% if totalItems|default(0) > 0 %}
-                    <span id="cart-count" class="badge bg-danger">{{ totalItems|default(0) }}</span>
-                {% endif %}
+                <span id="cart-count" class="badge bg-danger">{{ totalItems|default(0) }}</span>
             </a>
         </div>
     </div>

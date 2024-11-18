@@ -7,51 +7,5 @@
 
     <a href="{{ path('checkout') }}" class="btn btn-primary">Payer</a>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
 
-            function refreshCart() {
-                fetch('/cart/refresh')
-                    .then(response => response.text())
-                    .then(html => {
-                        document.querySelector('#cart-container').innerHTML = html;
-                        attachEventListeners(); // Re-attach listeners after refreshing content
-                    });
-            }
-
-            function attachEventListeners() {
-                document.querySelectorAll('.btn-increase').forEach(button => {
-                    button.addEventListener('click', function () {
-                        const productId = this.closest('tr').dataset.productId;
-                        fetch(`/cart/increase/${productId}`, {
-                            method: 'GET',
-                            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-                        }).then(() => refreshCart());
-                    });
-                });
-
-                document.querySelectorAll('.btn-decrease').forEach(button => {
-                    button.addEventListener('click', function () {
-                        const productId = this.closest('tr').dataset.productId;
-                        fetch(`/cart/decrease/${productId}`, {
-                            method: 'GET',
-                            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-                        }).then(() => refreshCart());
-                    });
-                });
-
-                document.querySelectorAll('.btn-remove').forEach(button => {
-                    button.addEventListener('click', function () {
-                        const productId = this.closest('tr').dataset.productId;
-                        fetch(`/cart/remove/${productId}`, {
-                            method: 'GET',
-                            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-                        }).then(() => refreshCart());
-                    });
-                });
-            }
-
-            attachEventListeners(); // Initial attach of listeners
-        });
-    </script>
 {% endblock %}

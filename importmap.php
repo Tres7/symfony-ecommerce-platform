@@ -35,4 +35,13 @@ return [
         'version' => '5.3.3',
         'type' => 'css',
     ],
+    '@symfony/stimulus-bridge' => [
+        'version' => '3.2.2',
+    ],
+    'stimulus' => [
+        'version' => '3.2.2',
+    ],
+    'stimulus/webpack-helpers' => [
+        'version' => '3.2.2',
+    ],
 ];
