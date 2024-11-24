@@ -84,9 +84,28 @@
                 </li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Recherche..." aria-label="Search">
-            </form>
+{#            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">#}
+{#                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Recherche..." aria-label="Search">#}
+{#            </form>#}
+{#            <form#}
+{#                    data-controller="live"#}
+{#                    data-live-url-value="{{ path('product_search') }}"#}
+{#                    data-live-data-value="{ 'query': '' }"#}
+{#            >#}
+{#                <input#}
+{#                        type="search"#}
+{#                        name="query"#}
+{#                        class="form-control form-control-dark text-bg-dark"#}
+{#                        placeholder="Recherche..."#}
+{#                        data-action="input->live#update"#}
+{#                >#}
+{#            </form>#}
+
+{#            <div>#}
+{#                {{ live_component('product_search', { query: '' }) }}#}
+{#            </div>#}
+
+
 
             <div class="text-end">
                 {% if app.user %}

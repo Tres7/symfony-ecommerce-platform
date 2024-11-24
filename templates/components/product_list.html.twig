@@ -1,0 +1,20 @@
+{# templates/components/product_list.html.twig #}
+<div {{ attributes }}>
+    <h2 class="text-center mb-5">Nos Produits</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for product in this.products %}
+            <div class="col">
+                <div class="card h-100">
+{#                    <img src="{{ product.getImages() }}" class="card-img-top" alt="{{ product.name }}" style="height: 300px; object-fit: cover;">#}
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.price }} €</p>
+                        <a class="btn btn-dark">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-muted">Aucun produit trouvé pour "{{ query }}".</p>
+        {% endfor %}
+    </div>
+</div>

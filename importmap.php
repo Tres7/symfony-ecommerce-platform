@@ -44,4 +44,24 @@ return [
     'stimulus/webpack-helpers' => [
         'version' => '3.2.2',
     ],
+    'tom-select' => [
+        'version' => '2.4.1',
+    ],
+    '@orchidjs/sifter' => [
+        'version' => '1.1.0',
+    ],
+    '@orchidjs/unicode-variants' => [
+        'version' => '1.1.2',
+    ],
+    'tom-select/dist/css/tom-select.default.min.css' => [
+        'version' => '2.4.1',
+        'type' => 'css',
+    ],
+    '@symfony/ux-live-component' => [
+        'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
+    ],
+    'tom-select/dist/css/tom-select.default.css' => [
+        'version' => '2.4.1',
+        'type' => 'css',
+    ],
 ];

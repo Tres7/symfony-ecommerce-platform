@@ -41,6 +41,18 @@ class ProductRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+// src/Repository/ProductRepository.php
+    public function searchByName(string $query): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.name LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->setMaxResults(10) // Limiter les résultats pour de meilleures performances
+            ->getQuery()
+            ->getResult();
+    }
+
+
     /**
      * get all products with their category
      * @return array

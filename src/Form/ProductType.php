@@ -50,6 +50,7 @@ class ProductType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Catégorie',
+                'autocomplete' => true,
             ])
 
             ->add('images', FileType::class, [

@@ -1,0 +1,35 @@
+<div {{ attributes }}>
+
+    <div class="container py-5" data-controller="cart">
+        <input type="text" placeholder="Rechercher un produit..." class="form-control mb-3" data-model="query"/>
+
+        <div class="spinner-border" role="status" data-loading>
+            <span class="visually-hidden">Chargement...</span>
+        </div>
+
+        <h2 class="text-center mb-5">Nos Produits</h2>
+
+        {% if this.products|length > 0 %}
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for product in this.products %}
+                    <div class="col">
+                        <div class="card h-100">
+                            {% if product.images|length > 0 %}
+                                <img src="{{ asset('uploads/images/' ~ product.images|first.url) }}" class="card-img-top" alt="Image de {{ product.name }}" style="height: 300px; object-fit: cover;">
+                            {% else %}
+                                <img src="{{ asset('uploads/images/default-image.jpg') }}" class="card-img-top" alt="Image par défaut" style="height: 300px; object-fit: cover;">
+                            {% endif %}
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.price }} €</p>
+                                <a data-action="click->cart#addToCart" data-product-id="{{ product.id }}" class="btn btn-dark btn-add-to-cart">Ajouter au panier</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted text-center mt-5">Aucun produit trouvé pour "{{ this.query }}".</p>
+        {% endif %}
+    </div>
+</div>
