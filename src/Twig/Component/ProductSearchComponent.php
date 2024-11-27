@@ -1,5 +1,4 @@
 <?php
-// src/Twig/Components/ProductSearchComponent.php
 namespace App\Twig\Component;
 
 use App\Repository\ProductRepository;

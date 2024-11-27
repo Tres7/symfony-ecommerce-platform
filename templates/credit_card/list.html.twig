@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cartes Bancaires{% endblock %}
+
+{% block body %}
+    <h1>Cartes Bancaires Enregistrées</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Numéro</th>
+            <th>Date d'expiration</th>
+            <th>CVV</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for card in creditCards %}
+            <tr>
+                <td>**** **** **** {{ card.number|slice(-4) }}</td>
+                <td>{{ card.expirationDate|date('m/Y') }}</td>
+                <td>{{ card.cvv }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune carte enregistrée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('home') }}" class="btn btn-primary">Retour à l'accueil</a>
+{% endblock %}

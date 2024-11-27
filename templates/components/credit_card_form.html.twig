@@ -1,0 +1,23 @@
+<div {{ attributes }}>
+        {{ form_start(form, {
+            attr: {
+                'data-action': 'live#action:prevent',
+                'data-live-action-param': 'save'
+            }
+        }) }}
+
+        {{ form_row(form.number) }}
+        {{ form_row(form.expirationDate) }}
+        {{ form_row(form.cvv) }}
+        <button type="submit" data-action="live#addCard" class="btn btn-primary">Ajouter la carte</button>
+
+        {{ form_end(form) }}
+</div>
+
+
+
+
+
+
+
+
