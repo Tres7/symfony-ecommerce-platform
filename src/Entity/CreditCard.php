@@ -19,15 +19,16 @@ class CreditCard
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 16, max: 16, exactMessage: 'Le numéro de carte doit contenir exactement 16 chiffres.')]
 
-    private ?int $number = null;
+    private ?string $number = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $expirationDate = null;
 
     #[ORM\Column(length: 255)]
-    private ?int $cvv = null;
+    private ?string $cvv = null;
 
-    #[ORM\ManyToOne(inversedBy: 'creditCards')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'creditCards')]
+    #[ORM\JoinColumn(nullable: false)] // L'utilisateur est obligatoire
     private ?User $user = null;
 
     public function getId(): ?int

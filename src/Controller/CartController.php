@@ -18,30 +18,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-//    #[Route('/cart/add/{id}', name: 'cart_add')]
-//    public function add(Product $product, Request $request): Response
-//    {
-//        $session = $request->getSession();
-//        $cart = $session->get('cart', []);
-//
-//        if (!empty($cart[$product->getId()])) {
-//            $cart[$product->getId()]++;
-//        } else {
-//            $cart[$product->getId()] = 1;
-//        }
-//
-//        $session->set('cart', $cart);
-//
-//        if ($request->isXmlHttpRequest()) {
-//            $totalItems = array_sum($cart);
-//            return $this->json([
-//                'totalItems' => $totalItems,
-//            ]);
-//        }
-//
-//
-//        return $this->redirectToRoute('home');
-//    }
     #[Route('/cart/add/{id}', name: 'cart_add')]
     public function add(Product $product,Request $request,SessionInterface $session,ProductRepository $productRepository):JsonResponse
     {

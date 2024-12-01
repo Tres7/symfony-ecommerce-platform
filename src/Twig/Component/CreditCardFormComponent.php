@@ -2,7 +2,9 @@
 namespace App\Twig\Component;
 
 use App\Entity\CreditCard;
+use App\Entity\User;
 use App\Form\CreditCardType;
+use App\Form\UserCreditCardType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -10,6 +12,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
@@ -27,7 +30,7 @@ class CreditCardFormComponent extends AbstractController
     public ?CreditCard $creditCard = null;
 
     #[LiveProp]
-    public array $forms = []; // Collection de formulaires dynamiques
+    public array $forms = [];
 
 
     /**
@@ -40,35 +43,44 @@ class CreditCardFormComponent extends AbstractController
     private FormFactoryInterface $formFactory;
     private Security $security;
 
+
+    #[LiveProp]
+    public ?User $user = null;
+
     public function __construct(EntityManagerInterface $entityManager,FormFactoryInterface $formFactory, Security $security)
     {
-
         $this->entityManager = $entityManager;
         $this->security = $security;
-
-
     }
 
     protected function instantiateForm(): FormInterface
     {
-        // we can extend AbstractController to get the normal shortcuts
-        return $this->createForm(CreditCardType::class, $this->initialFormData);
+        return $this->createForm(UserCreditCardType::class, $this->user);
     }
 
 
     public function mount(CreditCard $creditCard = null): void
     {
-        // Initialise l'entité CreditCard si elle est nulle
         $this->creditCard = $creditCard ?? new CreditCard();
         $this->creditCard->setUser($this->security->getUser());
+        $this->user = $this->security->getUser();
+        $this->creditCard->setUser($this->user);
 
     }
 
     #[LiveAction]
-    public function addCard(): void
+    public function removeCreditCard(#[LiveArg] int $index): void
     {
-        // Ajoute un nouveau formulaire à la collection
-        $this->forms[] = new CreditCard();
+        unset($this->formValues['creditCards'][$index]);
+    }
+    #[LiveAction]
+    public function addCreditCard(): void
+    {
+        $newCreditCard = new CreditCard();
+        $newCreditCard->setNumber('');
+        $newCreditCard->setExpirationDate(new \DateTime());
+        $newCreditCard->setCvv('');
+        $this->formValues['creditCards'][] = $newCreditCard;
     }
 
     #[LiveAction]
@@ -76,17 +88,36 @@ class CreditCardFormComponent extends AbstractController
     {
         $this->submitForm();
 
-        $creditCard = $this->getForm()->getData();
-        $creditCard->setUser($this->security->getUser());
-        $this->entityManager->persist($creditCard);
-            $entityManager->flush();
-        $this->addFlash('success', 'Post saved!');
+        /** @var User $user */
+        $user = $this->getForm()->getData();
+        $existingCards = $this->entityManager->getRepository(CreditCard::class)
+            ->findBy(['user' => $user]);
 
-        return $this->redirectToRoute('credit_cards'
-        );
+        foreach ($existingCards as $existingCard) {
+            if (!$user->getCreditCards()->contains($existingCard)) {
+                $user->addCreditCard($existingCard);
+            }
+        }
+        foreach ($user->getCreditCards() as $creditCard) {
+            if (!$creditCard->getId()) {
+                $creditCard->setUser($user);
+                $entityManager->persist($creditCard);
+            }
+        }
 
+        $entityManager->persist($user);
+        $entityManager->flush();
 
+        $this->addFlash('success', 'Les cartes ont été enregistrées avec succès !');
+
+        return $this->redirectToRoute('credit_cards');
     }
+
+
+
+
+
+
 }
 
 ?>
