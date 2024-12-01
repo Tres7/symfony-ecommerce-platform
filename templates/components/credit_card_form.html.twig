@@ -2,28 +2,59 @@
         {{ form_start(form) }}
         <div id="credit-card-forms">
                 {% for key, creditCardForm in form.creditCards %}
-                        <div>
-                                <button data-action="live#action" data-live-action-param="removeCreditCard" data-live-index-param="{{ key }}" type="button">
+                        <div class="credit-card-form mb-3">
+                                {# Affiche les champs du formulaire #}
+                                <div>
+                                        {{ form_label(creditCardForm.number) }}
+                                        {{ form_widget(creditCardForm.number) }}
+                                        <div class="text-danger">
+                                                {{ form_errors(creditCardForm.number) }}
+                                        </div>
+                                </div>
+
+                                <div>
+                                        {{ form_label(creditCardForm.expirationDate) }}
+                                        {{ form_widget(creditCardForm.expirationDate) }}
+                                        <div class="text-danger">
+                                                {{ form_errors(creditCardForm.expirationDate) }}
+                                        </div>
+                                </div>
+
+                                <div>
+                                        {{ form_label(creditCardForm.cvv) }}
+                                        {{ form_widget(creditCardForm.cvv) }}
+                                        <div class="text-danger">
+                                                {{ form_errors(creditCardForm.cvv) }}
+                                        </div>
+                                </div>
+
+                                {# Bouton pour supprimer une carte #}
+                                <button class="btn btn-danger btn-sm mt-2"
+                                        data-action="live#action"
+                                        data-live-action-param="removeCreditCard"
+                                        data-live-index-param="{{ key }}"
+                                        type="button">
                                         Supprimer
                                 </button>
-                                {{ form_widget(creditCardForm) }}
                         </div>
                 {% endfor %}
         </div>
-        <button data-action="live#action" data-live-action-param="addCreditCard" type="button">
+
+        {# Bouton pour ajouter une nouvelle carte #}
+        <button class="btn btn-secondary btn-sm mt-3"
+                data-action="live#action"
+                data-live-action-param="addCreditCard"
+                type="button">
                 Ajouter une autre carte
         </button>
 
-        <button  data-action="live#action" data-live-action-param="save" type="button" class="btn btn-primary">Soumettre</button>
+        {# Bouton pour soumettre le formulaire #}
+        <button data-action="live#action"
+                data-live-action-param="save"
+                type="button"
+                class="btn btn-primary mt-3">
+                Soumettre
+        </button>
 
         {{ form_end(form) }}
 </div>
-
-
-
-
-
-
-
-
-

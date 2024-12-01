@@ -17,10 +17,14 @@ class CreditCard
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le numéro de carte ne peut pas être vide.")]
     #[Assert\Length(min: 16, max: 16, exactMessage: 'Le numéro de carte doit contenir exactement 16 chiffres.')]
 
     private ?string $number = null;
 
+
+    #[Assert\NotBlank(message: "La date d'expiration est requise.")]
+    #[Assert\Type(\DateTimeInterface::class, message: "La date doit être valide.")]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $expirationDate = null;
 
