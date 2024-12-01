@@ -2,33 +2,104 @@
 {% block title %}Tableau de bord{% endblock %}
 
 {% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Tableau de bord</h1>
 
-    <h2>Nombre total de produits par catégorie</h2>
-    <ul>
-        {% for category in productsByCategory %}
-            <li>{{ category.category }}: {{ category.count }}</li>
-        {% endfor %}
-    </ul>
+        <div class="mb-4">
+            <a href="{{ path('admin_products') }}" class="btn btn-outline-primary btn-sm me-2">
+                <svg class="bi me-1" width="16" height="16" fill="currentColor">
+                    <use xlink:href="#table"></use>
+                </svg>
+                Liste des produits
+            </a>
+            <a href="{{ path('product_new') }}" class="btn btn-primary btn-sm">
+                <svg class="bi me-1" width="16" height="16" fill="currentColor">
+                    <use xlink:href="#box-arrow-in-right"></use>
+                </svg>
+                Ajouter un produit
+            </a>
+            <a href="{{ path('admin_users') }}" class="btn btn-outline-secondary btn-sm">
+                <svg class="bi me-1" width="16" height="16" fill="currentColor">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Liste des utilisateurs
+            </a>
+        </div>
 
-    <h2>Les 5 dernières commandes passées</h2>
-    <ul>
-        {% for order in latestOrders %}
-            <li>Commande #{{ order.id }} - {{ order.createdAt|date('d/m/Y') }} - Statut: {{ order.status.value }}</li>
-        {% endfor %}
-    </ul>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Nombre total de produits par catégorie</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for category in productsByCategory %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ category.category }}
+                                    <span class="badge bg-primary rounded-pill">{{ category.count }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-    <h2>Ratio de disponibilité des produits</h2>
-    <ul>
-        {% for status in productAvailability %}
-            <li>{{ status.status.value }}: {{ status.count }}</li>
-        {% endfor %}
-    </ul>
+            <div class="col-md-6">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h4>Les 5 dernières commandes passées</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for order in latestOrders %}
+                                <li class="list-group-item">
+                                    <strong>Commande #{{ order.id }}</strong> - {{ order.createdAt|date('d/m/Y') }}<br>
+                                    <span class="badge bg-secondary">{{ order.status.value }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h2>Montant total des ventes réalisées par mois (12 derniers mois)</h2>
-    <ul>
-        {% for sale in monthlySales %}
-            <li>{{ sale.month }}: {{ sale.total_sales }} €</li>
-        {% endfor %}
-    </ul>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-warning text-white">
+                        <h4>Ratio de disponibilité des produits</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for status in productAvailability %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ status.status.value }}
+                                    <span class="badge bg-warning rounded-pill">{{ status.count }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h4>Montant total des ventes réalisées par mois (12 derniers mois)</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for sale in monthlySales %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ sale.month }}
+                                    <span class="badge bg-info rounded-pill">{{ sale.total_sales }} €</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-

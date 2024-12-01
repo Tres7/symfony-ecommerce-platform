@@ -1,53 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-{#    <h1>Inscription</h1>#}
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%;">
+            <h1 class="text-center mb-4">Inscription</h1>
 
-{#    {{ form_errors(registrationForm) }}#}
+            {{ form_start(registrationForm) }}
 
-{#    {{ form_start(registrationForm) }}#}
-{#        {{ form_row(registrationForm.email) }}#}
-{#        {{ form_row(registrationForm.lastName) }}#}
-{#        {{ form_row(registrationForm.firstName) }}#}
-{#        {{ form_row(registrationForm.plainPassword, {#}
-{#            label: 'Password'#}
-{#        }) }}#}
-{#        {{ form_row(registrationForm.agreeTerms) }}#}
-
-{#        <button type="submit" class="btn btn-primary">S'inscrire</button>#}
-{#    {{ form_end(registrationForm) }}#}
-
-    <div class="container mt-5">
-        <h1 class="text-center">Inscription</h1>
-
-        {{ form_start(registrationForm) }}
-        <div class="row">
-            <div class="col-md-6">
-                {{ form_row(registrationForm.email) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                {{ form_row(registrationForm.lastName) }}
-            </div>
-            <div class="col-md-12">
-                {{ form_row(registrationForm.firstName) }}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                {{ form_row(registrationForm.plainPassword, {
-                    label: 'Password'
+            <div class="mb-3">
+                {{ form_row(registrationForm.email, {
+                    'label_attr': {'class': 'form-label'},
+                    'attr': {'class': 'form-control'}
                 }) }}
             </div>
-            {{ form_row(registrationForm.agreeTerms) }}
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    {{ form_row(registrationForm.lastName, {
+                        'label_attr': {'class': 'form-label'},
+                        'attr': {'class': 'form-control'}
+                    }) }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    {{ form_row(registrationForm.firstName, {
+                        'label_attr': {'class': 'form-label'},
+                        'attr': {'class': 'form-control'}
+                    }) }}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(registrationForm.plainPassword, {
+                    'label': 'Mot de passe',
+                    'label_attr': {'class': 'form-label'},
+                    'attr': {'class': 'form-control'}
+                }) }}
+            </div>
+
+            <div class="form-check mb-3">
+                {{ form_row(registrationForm.agreeTerms, {
+                    'label_attr': {'class': 'form-check-label'},
+                    'attr': {'class': 'form-check-input'}
+                }) }}
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button>
+            </div>
+
+            {{ form_end(registrationForm) }}
         </div>
-        <div class="d-flex justify-content-between mt-3">
-            <button type="submit" class="btn btn-primary">S'inscrire</button>
-        </div>
-        {{ form_end(registrationForm) }}
     </div>
 {% endblock %}

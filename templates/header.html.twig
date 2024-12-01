@@ -55,34 +55,35 @@
 
 <header class="p-3 text-bg-dark">
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-between" >
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
 
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>
-                    <a href="{{ path('home') }}" class="nav-link text-secondary">
+                    <a href="{{ path('home') }}" class="nav-link {% if app.request.get('_route') == 'home' %}text-secondary{% else %}text-white{% endif %}">
                         <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
                         Maison
                     </a>
                 </li>
                 <li>
-                    <a href="{{path('dashboard_redirect')}}" class="nav-link text-white">
+                    <a href="{{ path('dashboard_redirect') }}" class="nav-link {% if app.request.get('_route') == 'dashboard_redirect' %}text-secondary{% else %}text-white{% endif %}">
                         <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
                         Tableau de bord
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="#" class="nav-link {% if app.request.get('_route') == 'faq' %}text-secondary{% else %}text-white{% endif %}">
                         <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
                         FAQ
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="#" class="nav-link {% if app.request.get('_route') == 'about' %}text-secondary{% else %}text-white{% endif %}">
                         <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
                         A propos
                     </a>
                 </li>
             </ul>
+
             <div class="text-end">
                 {% if app.user %}
                     <div class="dropdown">
@@ -121,6 +122,7 @@
         </div>
     </div>
 </header>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
