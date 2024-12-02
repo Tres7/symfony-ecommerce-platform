@@ -242,6 +242,11 @@ class CartController extends AbstractController
 
     #[Route('/checkout', name: 'checkout')]
     public function checkout(Request $request,SessionInterface $session,ProductRepository $productRepository,EntityManagerInterface $entityManager): RedirectResponse {
+        if (!$this->getUser()) {
+            $this->addFlash('error', 'Vous devez être connecté pour effectuer un achat.');
+            return $this->redirectToRoute('login'); // Redirection vers la page de connexion
+        }
+
         $cart = $session->get('cart', []);
         if (empty($cart)) {
             $this->addFlash('error', 'Votre panier est vide.');

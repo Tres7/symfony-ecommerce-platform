@@ -58,30 +58,34 @@
         <div class="d-flex flex-wrap align-items-center justify-content-between">
 
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                {% if not app.user or (is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN')) %}
+                    <li>
+                        <a href="{{ path('home') }}" class="nav-link {% if app.request.get('_route') == 'home' %}text-secondary{% else %}text-white{% endif %}">
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
+                            Maison
+                        </a>
+                    </li>
+                {% endif %}
                 <li>
-                    <a href="{{ path('home') }}" class="nav-link {% if app.request.get('_route') == 'home' %}text-secondary{% else %}text-white{% endif %}">
-                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
-                        Maison
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('dashboard_redirect') }}" class="nav-link {% if app.request.get('_route') == 'dashboard_redirect' %}text-secondary{% else %}text-white{% endif %}">
+                    <a href="{{ path('dashboard_redirect') }}" class="nav-link {% if app.request.get('_route') == 'admin_dashboard' %}text-secondary{% else %}text-white{% endif %}">
                         <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
                         Tableau de bord
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="nav-link {% if app.request.get('_route') == 'faq' %}text-secondary{% else %}text-white{% endif %}">
-                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
-                        FAQ
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link {% if app.request.get('_route') == 'about' %}text-secondary{% else %}text-white{% endif %}">
-                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
-                        A propos
-                    </a>
-                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a href="{{ path('admin_products') }}" class="nav-link {% if app.request.get('_route') == 'admin_products' %}text-secondary{% else %}text-white{% endif %}">
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
+                            Liste des produits
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_users') }}" class="nav-link {% if app.request.get('_route') == 'admin_users' %}text-secondary{% else %}text-white{% endif %}">
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+                            Liste des utilisateurs
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
 
             <div class="text-end">
@@ -113,12 +117,14 @@
                     </a>
                 {% endif %}
             </div>
-            <a href="{{ path('cart_show') }}" class="nav-link">
-                <svg class="bi" width="25" height="25">
-                    <use xlink:href="#cart"></use>
-                </svg>
-                <span id="cart-count" class="badge bg-danger">{{ totalItems|default(0) }}</span>
-            </a>
+            {% if is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('cart_show') }}" class="nav-link">
+                    <svg class="bi" width="25" height="25">
+                        <use xlink:href="#cart"></use>
+                    </svg>
+                    <span id="cart-count" class="badge bg-danger">{{ totalItems|default(0) }}</span>
+                </a>
+            {% endif %}
         </div>
     </div>
 </header>

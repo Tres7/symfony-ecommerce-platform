@@ -1,27 +1,31 @@
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Tableau de bord - Résumé des commandes</h1>
+    <div class="container mt-4">
+        <section class="mb-4">
+            <h2>Mes commandes</h2>
+            {% if clientOrders is not empty %}
+                <ul class="list-group">
+                    {% for order in clientOrders %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Commande #{{ order.id }}</strong> <br>
+                                Date : {{ order.createdAt|date('d/m/Y') }} <br>
+                                Statut : <span class="badge bg-secondary">{{ order.status.value }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">Vous n'avez pas encore passé de commandes.</p>
+            {% endif %}
+        </section>
 
-    <section>
-        <h2>Résumé des commandes</h2>
-        {% if clientOrders is not empty %}
-            <ul>
-                {% for order in clientOrders %}
-                    <li>
-                        <strong>Commande #{{ order.id }}</strong> -
-                        Date : {{ order.createdAt|date('d/m/Y') }} -
-                        Statut : {{ order.status.value }} </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Vous n'avez pas encore passé de commandes.</p>
-        {% endif %}
-    </section>
 
-    <section>
-        <h2>Historique des commandes</h2>
-        <p>Affichage complet de toutes vos commandes passées.</p>
-    </section>
+        <section>
+            <h2>Accès rapide</h2>
+            <a href="{{ path('home') }}" class="btn btn-primary">Voir les produits</a>
+            <a href="{{ path('cart_show') }}" class="btn btn-outline-primary">Mon panier</a>
+        </section>
+    </div>
 {% endblock %}
