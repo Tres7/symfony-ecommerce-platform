@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}{{ 'register.title'|trans }}{% endblock %}
 
 {% block body %}
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
         <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%;">
-            <h1 class="text-center mb-4">Inscription</h1>
+            <h1 class="text-center mb-4">{{ 'register.heading'|trans }}</h1>
 
             {{ form_start(registrationForm) }}
 
             <div class="mb-3">
                 {{ form_row(registrationForm.email, {
+                    'label': 'register.email'|trans,
                     'label_attr': {'class': 'form-label'},
                     'attr': {'class': 'form-control'}
                 }) }}
@@ -19,12 +20,14 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     {{ form_row(registrationForm.lastName, {
+                        'label': 'register.last_name'|trans,
                         'label_attr': {'class': 'form-label'},
                         'attr': {'class': 'form-control'}
                     }) }}
                 </div>
                 <div class="col-md-6 mb-3">
                     {{ form_row(registrationForm.firstName, {
+                        'label': 'register.first_name'|trans,
                         'label_attr': {'class': 'form-label'},
                         'attr': {'class': 'form-control'}
                     }) }}
@@ -33,7 +36,7 @@
 
             <div class="mb-3">
                 {{ form_row(registrationForm.plainPassword, {
-                    'label': 'Mot de passe',
+                    'label': 'register.password'|trans,
                     'label_attr': {'class': 'form-label'},
                     'attr': {'class': 'form-control'}
                 }) }}
@@ -41,13 +44,14 @@
 
             <div class="form-check mb-3">
                 {{ form_row(registrationForm.agreeTerms, {
+                    'label': 'register.agree_terms'|trans,
                     'label_attr': {'class': 'form-check-label'},
                     'attr': {'class': 'form-check-input'}
                 }) }}
             </div>
 
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button>
+                <button type="submit" class="btn btn-primary btn-lg">{{ 'register.submit'|trans }}</button>
             </div>
 
             {{ form_end(registrationForm) }}

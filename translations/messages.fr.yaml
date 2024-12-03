@@ -1,1 +1,66 @@
-Name: Prénom
+login:
+  title: "Veuillez vous connecter"
+  email: "E-mail"
+  password: "Mot de passe"
+  remember_me: "Souviens-toi de moi"
+  submit: "Se connecter"
+
+header:
+  home: Maison
+  dashboard: Tableau de bord
+  products_list: Liste des produits
+  users_list: Liste des utilisateurs
+  login: Se connecter
+  register: S'inscrire
+  logout: Se déconnecter
+
+footer:
+  author: "Auteur: Godwin KPOGLO, Inc"
+  home: Maison
+  pricing: Tarifs
+
+register:
+  title: Inscription
+  heading: Inscription
+  email: E-mail
+  last_name: Nom de famille
+  first_name: Prénom
+  password: Mot de passe
+  agree_terms: J'accepte les termes et conditions
+  submit: S'inscrire
+
+products:
+  list_title: Liste des produits
+  add: Ajouter un produit
+  name: Nom
+  price: Prix
+  quantity: Quantité
+  category: Catégorie
+  image: Image
+  actions: Actions
+  edit: Modifier
+  delete:
+    label: Supprimer
+    confirm: Êtes-vous sûr de vouloir supprimer ce produit ?
+  image_alt: Image de %name%
+
+
+  product_form:
+    header:
+      create: Ajouter un nouveau produit
+      edit: Modifier le produit
+    fields:
+      name: Nom du produit
+      price: Prix
+      description: Description
+      stock: Quantité en stock
+      status: Statut du produit
+      category: Catégorie
+      images: Image du produit
+    buttons:
+      back: Retour à la liste
+      create: Créer
+      update: Mettre à jour
+
+
+

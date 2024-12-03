@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow">
             <div class="card-header bg-primary text-white">
-                <h2 class="text-center">{{ product is defined ? 'Modifier le produit' : 'Ajouter un nouveau produit' }}</h2>
+                <h2 class="text-center">{{ product is defined ? 'product_form.header.edit'|trans : 'product_form.header.create'|trans }}</h2>
             </div>
             <div class="card-body">
                 {{ form_start(form, { 'attr': { 'class': 'needs-validation', 'novalidate': 'novalidate' } }) }}
@@ -12,7 +12,7 @@
                 <div class="row g-3">
                     <!-- Nom du produit -->
                     <div class="col-md-6">
-                        <label for="product_name" class="form-label">Nom du produit</label>
+                        <label for="product_name" class="form-label">{{ 'product_form.fields.name'|trans }}</label>
                         <div class="input-group">
                         <span class="input-group-text bg-light">
                             <svg class="bi" width="16" height="16" fill="currentColor">
@@ -25,7 +25,7 @@
 
                     <!-- Prix -->
                     <div class="col-md-6">
-                        <label for="product_price" class="form-label">Prix</label>
+                        <label for="product_price" class="form-label">{{ 'product_form.fields.price'|trans }}</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light">€</span>
                             {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'id': 'product_price'} }) }}
@@ -36,7 +36,7 @@
                 <div class="row g-3 mt-3">
                     <!-- Description -->
                     <div class="col-12">
-                        <label for="product_description" class="form-label">Description</label>
+                        <label for="product_description" class="form-label">{{ 'product_form.fields.description'|trans }}</label>
                         {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'rows': 4, 'id': 'product_description'} }) }}
                     </div>
                 </div>
@@ -44,13 +44,13 @@
                 <div class="row g-3 mt-3">
                     <!-- Stock -->
                     <div class="col-md-6">
-                        <label for="product_stock" class="form-label">Quantité en stock</label>
+                        <label for="product_stock" class="form-label">{{ 'product_form.fields.stock'|trans }}</label>
                         {{ form_widget(form.stock, { 'attr': {'class': 'form-control', 'id': 'product_stock'} }) }}
                     </div>
 
                     <!-- Statut -->
                     <div class="col-md-6">
-                        <label for="product_status" class="form-label">Statut du produit</label>
+                        <label for="product_status" class="form-label">{{ 'product_form.fields.status'|trans }}</label>
                         {{ form_widget(form.status, { 'attr': {'class': 'form-select', 'id': 'product_status'} }) }}
                     </div>
                 </div>
@@ -58,15 +58,14 @@
                 <div class="row g-3 mt-3">
                     <!-- Catégorie -->
                     <div class="col-md-6">
-                        <label for="product_category" class="form-label">Catégorie</label>
+                        <label for="product_category" class="form-label">{{ 'product_form.fields.category'|trans }}</label>
                         {{ form_widget(form.category, { 'attr': {'class': 'form-select', 'id': 'product_category'} }) }}
                     </div>
 
                     <!-- Image -->
                     <div class="col-md-6">
-                        <label for="product_image" class="form-label">Image du produit</label>
-                        {{ form_widget(form.images, { 'attr': {'class': 'form-control', 'id': 'product_image','style': 'max-width: 400px;'
-                        } }) }}
+                        <label for="product_image" class="form-label">{{ 'product_form.fields.images'|trans }}</label>
+                        {{ form_widget(form.images, { 'attr': {'class': 'form-control', 'id': 'product_image','style': 'max-width: 400px;'} }) }}
                     </div>
                 </div>
 
@@ -75,13 +74,13 @@
                         <svg class="bi me-1" width="16" height="16" fill="currentColor">
                             <use xlink:href="#arrow-left"></use>
                         </svg>
-                        Retour à la liste
+                        {{ 'product_form.buttons.back'|trans }}
                     </a>
                     <button class="btn btn-primary">
                         <svg class="bi me-1" width="16" height="16" fill="currentColor">
                             <use xlink:href="#check2-circle"></use>
                         </svg>
-                        {{ product is defined ? 'Mettre à jour' : 'Créer' }}
+                        {{ product is defined ? 'product_form.buttons.update'|trans : 'product_form.buttons.create'|trans }}
                     </button>
                 </div>
 
@@ -90,3 +89,4 @@
         </div>
     </div>
 {% endblock %}
+

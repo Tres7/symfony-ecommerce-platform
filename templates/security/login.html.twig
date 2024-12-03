@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
         <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
-            <h1 class="text-center mb-4">Veuillez vous connecter</h1>
+            <h1 class="text-center mb-4">{{ 'login.title'|trans }}</h1>
 
             <form method="post">
                 {% if error %}
@@ -20,13 +20,13 @@
                 {% endif %}
 
                 <div class="mb-3">
-                    <label for="inputEmail" class="form-label">E-mail</label>
+                    <label for="inputEmail" class="form-label">{{ 'login.email'|trans }}</label>
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
                            class="form-control" style="width: 100%;" autocomplete="email" required autofocus>
                 </div>
 
                 <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Mot de passe</label>
+                    <label for="inputPassword" class="form-label">{{ 'login.password'|trans }}</label>
                     <input type="password" name="password" id="inputPassword"
                            class="form-control" style="width: 100%;" autocomplete="current-password" required>
                 </div>
@@ -35,11 +35,11 @@
 
                 <div class="form-check mb-3">
                     <input type="checkbox" class="form-check-input" id="rememberMe" name="_remember_me">
-                    <label class="form-check-label" for="rememberMe">Souviens-toi de moi</label>
+                    <label class="form-check-label" for="rememberMe">{{ 'login.remember_me'|trans }}</label>
                 </div>
 
                 <div class="d-grid">
-                    <button class="btn btn-primary btn-lg" type="submit">Se connecter</button>
+                    <button class="btn btn-primary btn-lg" type="submit">{{ 'login.submit'|trans }}</button>
                 </div>
             </form>
         </div>

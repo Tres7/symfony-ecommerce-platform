@@ -1,0 +1,65 @@
+login:
+  title: "Please log in"
+  email: "Email"
+  password: "Password"
+  remember_me: "Remember me"
+  submit: "Login"
+
+header:
+  home: Home
+  dashboard: Dashboard
+  products_list: Product List
+  users_list: Users List
+  login: Login
+  register: Register
+  logout: Logout
+
+footer:
+  author: "Author: Godwin KPOGLO, Inc"
+  home: Home
+  pricing: Pricing
+
+register:
+  title: Register
+  heading: Register
+  email: Email
+  last_name: Last Name
+  first_name: First Name
+  password: Password
+  agree_terms: I agree to the terms and conditions
+  submit: Register
+
+products:
+  list_title: Product List
+  add: Add a Product
+  name: Name
+  price: Price
+  quantity: Quantity
+  category: Category
+  image: Image
+  actions: Actions
+  edit: Edit
+  delete:
+    label: Delete
+    confirm: Are you sure you want to delete this product?
+  image_alt: Image of %name%
+
+
+product_form:
+  header:
+    create: Add a New Product
+    edit: Edit Product
+  fields:
+    name: Product Name
+    price: Price
+    description: Description
+    stock: Stock Quantity
+    status: Product Status
+    category: Category
+    images: Product Image
+  buttons:
+    back: Back to List
+    create: Create
+    update: Update
+
+
