@@ -1,4 +1,5 @@
-# E-Commerce Décoration Intérieure - Symfony Project
+# Mini-site E-Commerce ayant comme thème: La décoration intérieure - Projet Symfony
+
 # Description
 Ce projet est une plateforme de commerce électronique sur le thème de la décoration intérieure. Il permet aux utilisateurs de parcourir et d'acheter des produits en fonction des catégories disponibles, comme les meubles, les décorations murales ou les accessoires. Le projet est réalisé avec Symfony, un framework PHP, et suit les meilleures pratiques du développement web.
 
@@ -61,8 +62,8 @@ Le projet inclut un système de traduction avec les langues suivantes :
 Pour modifier ou ajouter des traductions, modifiez les fichiers dans translations/messages.{locale}.yaml.
 
 ### Aperçu
-- Page d'accueil: Affiche une liste des produits disponibles, triés par catégories.
+- **Page d'accueil** : Affiche une liste des produits disponibles, triés par catégories.
 
-- [Panier] Les utilisateurs peuvent ajouter des produits au panier et finaliser leur commande après s'être connectés.
+- **Panier** : Les utilisateurs peuvent ajouter des produits au panier et finaliser leur commande après s'être connectés.
 
-- Dashboard Admin: Un tableau de bord pour suivre les statistiques et gérer les produits et utilisateurs.
+- **Tableau de bord Administrateur** : Un tableau de bord pour suivre les statistiques et gérer les produits et utilisateurs.
