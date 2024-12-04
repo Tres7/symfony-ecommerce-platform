@@ -7,7 +7,7 @@
         <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
             <h1 class="text-center mb-4">{{ 'login.title'|trans }}</h1>
 
-            <form method="post">
+            <form action="{{ path('login') }}" method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}

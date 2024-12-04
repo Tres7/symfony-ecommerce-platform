@@ -44,10 +44,12 @@ class UserLoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
-        }
         $user = $token->getUser();
+        // redirect to some "app_homepage" route - of wherever you want
+//        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+//            return new RedirectResponse($targetPath);
+//        }
+//        $user = $token->getUser();
         if ($user && is_object($user)) {
             if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
                 return new RedirectResponse($this->urlGenerator->generate('admin_dashboard'));
@@ -58,6 +60,7 @@ class UserLoginAuthenticator extends AbstractLoginFormAuthenticator
             }
         }
         return new RedirectResponse($this->urlGenerator->generate('home'));
+
     }
 
 
