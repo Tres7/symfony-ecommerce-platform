@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\CreditCard;
-use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,52 +17,50 @@ class CreditCardType extends AbstractType
     {
         $builder
             ->add('number', TextType::class, [
-                'label' => 'Numéro de carte',
+                'label' => 'form.credit_card.number.label',
                 'required' => true,
                 'attr' => [
                     'maxlength' => 16,
-                    'placeholder' => 'Entrez 16 chiffres',
+                    'placeholder' => 'form.credit_card.number.placeholder',
                 ],
                 'constraints' => [
-                    new Assert\NotBlank(message: 'Le numéro de carte est obligatoire.'),
+                    new Assert\NotBlank(message: 'form.credit_card.number.required'),
                     new Assert\Length(
                         min: 16,
                         max: 16,
-                        minMessage: 'Le numéro de carte doit être composé de 16 chiffres.',
-                        maxMessage: 'Le numéro de carte doit être composé de 16 chiffres.',
+                        minMessage: 'form.credit_card.number.length',
+                        maxMessage: 'form.credit_card.number.length',
                     ),
                 ],
-
             ])
             ->add('expirationDate', DateType::class, [
                 'data' => new \DateTime(),
+                'label' => 'form.credit_card.expiration_date.label',
                 'constraints' => [
-                    new Assert\NotBlank(message: 'La date d\'expiration est obligatoire.'),
-                    new Assert\Type(type: \DateTimeInterface::class, message: 'Veuillez entrer une date valide.'),
+                    new Assert\NotBlank(message: 'form.credit_card.expiration_date.required'),
+                    new Assert\Type(type: \DateTimeInterface::class, message: 'form.credit_card.expiration_date.invalid'),
                 ],
-
             ])
             ->add('cvv', TextType::class, [
-                'label' => 'CVV',
+                'label' => 'form.credit_card.cvv.label',
                 'required' => true,
                 'attr' => [
                     'maxlength' => 3,
-                    'placeholder' => 'Entrez les 3 chiffres',
+                    'placeholder' => 'form.credit_card.cvv.placeholder',
                 ],
                 'constraints' => [
-                    new Assert\NotBlank(message: 'Le CVV est obligatoire.'),
+                    new Assert\NotBlank(message: 'form.credit_card.cvv.required'),
                     new Assert\Length(
                         min: 3,
                         max: 3,
-                        exactMessage: 'Le CVV doit être composé de 3 chiffres.'
+                        exactMessage: 'form.credit_card.cvv.length',
                     ),
                     new Regex([
                         'pattern' => '/^\d{3}$/',
-                        'message' => 'Le CVV doit être composé uniquement de 3 chiffres.',
+                        'message' => 'form.credit_card.cvv.invalid',
                     ]),
                 ],
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

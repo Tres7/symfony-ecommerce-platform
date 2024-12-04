@@ -3,10 +3,10 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Produit</th>
-                <th>Quantité</th>
-                <th>Sous-total</th>
-                <th>Actions</th>
+                <th>{{ 'cart.product'|trans }}</th>
+                <th>{{ 'cart.quantity'|trans }}</th>
+                <th>{{ 'cart.subtotal'|trans }}</th>
+                <th>{{ 'cart.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="2">Total :</td>
+                <td colspan="2">{{ 'cart.total'|trans }} :</td>
                 <td id="cart-total">{{ total }} €</td>
             </tr>
             </tfoot>

@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}{{ 'admin.users.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Liste des utilisateurs</h1>
+    <h1>{{ 'admin.users.heading'|trans }}</h1>
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Rôles</th>
+            <th>{{ 'admin.users.table.id'|trans }}</th>
+            <th>{{ 'admin.users.table.email'|trans }}</th>
+            <th>{{ 'admin.users.table.first_name'|trans }}</th>
+            <th>{{ 'admin.users.table.last_name'|trans }}</th>
+            <th>{{ 'admin.users.table.roles'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -21,11 +21,13 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <td>{% if 'ROLE_ADMIN' in user.roles %}
-                        Administrateur
+                <td>
+                    {% if 'ROLE_ADMIN' in user.roles %}
+                        {{ 'admin.users.roles.admin'|trans }}
                     {% else %}
-                        Utilisateur
-                    {% endif %}</td>
+                        {{ 'admin.users.roles.user'|trans }}
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -33,5 +35,3 @@
 
     {{ knp_pagination_render(users) }}
 {% endblock %}
-
-

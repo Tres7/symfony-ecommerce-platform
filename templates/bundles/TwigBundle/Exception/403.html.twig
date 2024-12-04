@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}403 - Accès refusé{% endblock %}
+{% block title %}{{ 'error.403.title'|trans }}{% endblock %}
 
 {% block body %}
     <div class="container text-center mt-5">
         <div class="alert alert-danger shadow-lg p-5" role="alert">
             <h1 class="display-3">403</h1>
-            <h2 class="mb-4">Accès refusé</h2>
-            <p class="lead mb-4">Vous n'avez pas les permissions nécessaires pour accéder à cette page.</p>
+            <h2 class="mb-4">{{ 'error.403.heading'|trans }}</h2>
+            <p class="lead mb-4">{{ 'error.403.message'|trans }}</p>
             <a href="{{ path('home') }}" class="btn btn-primary btn-lg">
-                Retour à l'accueil
+                {{ 'error.403.home'|trans }}
             </a>
         </div>
     </div>

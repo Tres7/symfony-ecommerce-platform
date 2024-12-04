@@ -90,4 +90,74 @@ credit_card_form:
   add: Add Another Card
   submit: Submit
 
+cart:
+  pay: "Checkout"
+  product: "Product"
+  quantity: "Quantity"
+  subtotal: "Subtotal"
+  actions: "Actions"
+  total: "Total"
+
+
+error:
+  403:
+    title: "403 - Access Denied"
+    heading: "Access Denied"
+    message: "You do not have the necessary permissions to access this page."
+    home: "Return to Home"
+
+
+admin:
+  users:
+    title: "User List"
+    heading: "User List"
+    table:
+      id: "ID"
+      email: "Email"
+      first_name: "First Name"
+      last_name: "Last Name"
+      roles: "Roles"
+    roles:
+      admin: "Administrator"
+      user: "User"
+
+
+form:
+  credit_card:
+    number:
+      label: "Card Number"
+      placeholder: "Enter 16 digits"
+      required: "The card number is required."
+      length: "The card number must be exactly 16 digits."
+    expiration_date:
+      label: "Expiration Date"
+      required: "The expiration date is required."
+      invalid: "Please enter a valid date."
+    cvv:
+      label: "CVV"
+      placeholder: "Enter 3 digits"
+      required: "The CVV is required."
+      length: "The CVV must be exactly 3 digits."
+      invalid: "The CVV must be only 3 digits."
+  product:
+    name:
+      label: "Product Name"
+      required: "The product name is required."
+    price:
+      label: "Price"
+      required: "The price is required."
+      positive: "The price must be a positive number."
+    description:
+      label: "Description"
+    stock:
+      label: "Stock"
+      required: "The stock quantity is required."
+      positive: "The stock quantity must be a positive number."
+    status:
+      label: "Product Status"
+    category:
+      label: "Category"
+    images:
+      label: "Product Images"
+      mime_type: "Please upload a valid image (JPEG or PNG)."
 
