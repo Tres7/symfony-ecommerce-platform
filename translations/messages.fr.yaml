@@ -10,6 +10,8 @@ header:
   dashboard: Tableau de bord
   products_list: Liste des produits
   users_list: Liste des utilisateurs
+  orders_list: Liste des commandes
+  add_credit_card: Ajouter une carte bancaire
   login: Se connecter
   register: S'inscrire
   logout: Se déconnecter
@@ -61,6 +63,34 @@ products:
       back: Retour à la liste
       create: Créer
       update: Mettre à jour
+
+orders:
+  list_title: Liste des commandes
+  table:
+    id: ID
+    reference: Référence
+    created_at: Date de création
+    status: Statut
+    customer: Client
+
+product_search:
+  placeholder: Rechercher un produit...
+  loading: Chargement...
+  title: Nos Produits
+  add_to_cart: Ajouter au panier
+  no_results: Aucun produit trouvé pour "%query%".
+  default_image_alt: Image par défaut
+  product_image_alt: Image de %name%
+
+
+credit_card_form:
+  number: Numéro de carte
+  expiration_date: Date d'expiration
+  cvv: CVV
+  remove: Supprimer
+  add: Ajouter une autre carte
+  submit: Soumettre
+
 
 
 

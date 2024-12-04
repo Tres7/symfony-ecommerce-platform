@@ -3,58 +3,39 @@
         <div id="credit-card-forms">
                 {% for key, creditCardForm in form.creditCards %}
                         <div class="credit-card-form mb-3">
-                                {# Affiche les champs du formulaire #}
                                 <div>
-                                        {{ form_label(creditCardForm.number) }}
+                                        {{ form_label(creditCardForm.number, 'credit_card_form.number'|trans) }}
                                         {{ form_widget(creditCardForm.number) }}
                                         <div class="text-danger">
                                                 {{ form_errors(creditCardForm.number) }}
                                         </div>
                                 </div>
-
                                 <div>
-                                        {{ form_label(creditCardForm.expirationDate) }}
+                                        {{ form_label(creditCardForm.expirationDate, 'credit_card_form.expiration_date'|trans) }}
                                         {{ form_widget(creditCardForm.expirationDate) }}
                                         <div class="text-danger">
                                                 {{ form_errors(creditCardForm.expirationDate) }}
                                         </div>
                                 </div>
-
                                 <div>
-                                        {{ form_label(creditCardForm.cvv) }}
+                                        {{ form_label(creditCardForm.cvv, 'credit_card_form.cvv'|trans) }}
                                         {{ form_widget(creditCardForm.cvv) }}
                                         <div class="text-danger">
                                                 {{ form_errors(creditCardForm.cvv) }}
                                         </div>
                                 </div>
-
-                                {# Bouton pour supprimer une carte #}
-                                <button class="btn btn-danger btn-sm mt-2"
-                                        data-action="live#action"
-                                        data-live-action-param="removeCreditCard"
-                                        data-live-index-param="{{ key }}"
-                                        type="button">
-                                        Supprimer
+                                <button class="btn btn-danger btn-sm mt-2" data-action="live#action" data-live-action-param="removeCreditCard" data-live-index-param="{{ key }}" type="button">
+                                        {{ 'credit_card_form.remove'|trans }}
                                 </button>
                         </div>
                 {% endfor %}
         </div>
 
-        {# Bouton pour ajouter une nouvelle carte #}
-        <button class="btn btn-secondary btn-sm mt-3"
-                data-action="live#action"
-                data-live-action-param="addCreditCard"
-                type="button">
-                Ajouter une autre carte
+        <button class="btn btn-secondary btn-sm mt-3" data-action="live#action" data-live-action-param="addCreditCard" type="button">
+                {{ 'credit_card_form.add'|trans }}
         </button>
-
-        {# Bouton pour soumettre le formulaire #}
-        <button data-action="live#action"
-                data-live-action-param="save"
-                type="button"
-                class="btn btn-primary mt-3">
-                Soumettre
+        <button data-action="live#action" data-live-action-param="save" type="button" class="btn btn-primary mt-3">
+                {{ 'credit_card_form.submit'|trans }}
         </button>
-
         {{ form_end(form) }}
 </div>

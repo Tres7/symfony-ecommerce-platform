@@ -10,6 +10,8 @@ header:
   dashboard: Dashboard
   products_list: Product List
   users_list: Users List
+  orders_list: Orders List
+  add_credit_card: Add Credit Card
   login: Login
   register: Register
   logout: Logout
@@ -61,5 +63,31 @@ product_form:
     back: Back to List
     create: Create
     update: Update
+
+orders:
+  list_title: Order List
+  table:
+    id: ID
+    reference: Reference
+    created_at: Created At
+    status: Status
+    customer: Customer
+
+product_search:
+  placeholder: Search for a product...
+  loading: Loading...
+  title: Our Products
+  add_to_cart: Add to Cart
+  no_results: No product found for "%query%".
+  default_image_alt: Default Image
+  product_image_alt: Image of %name%
+
+credit_card_form:
+  number: Card Number
+  expiration_date: Expiration Date
+  cvv: CVV
+  remove: Remove
+  add: Add Another Card
+  submit: Submit
 
 

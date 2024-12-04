@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Liste des commandes</h1>
+    <h1>{{ 'orders.list_title'|trans }}</h1>
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Référence</th>
-            <th>Date de création</th>
-            <th>Status</th>
-            <th>Client</th>
+            <th>{{ 'orders.table.id'|trans }}</th>
+            <th>{{ 'orders.table.reference'|trans }}</th>
+            <th>{{ 'orders.table.created_at'|trans }}</th>
+            <th>{{ 'orders.table.status'|trans }}</th>
+            <th>{{ 'orders.table.customer'|trans }}</th>
         </tr>
         </thead>
         <tbody>
