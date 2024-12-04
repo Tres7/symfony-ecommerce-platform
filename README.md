@@ -1,7 +1,7 @@
-# Mini-site E-Commerce ayant comme thème: La décoration intérieure - Projet Symfony
+# Mini-site E-Commerce ayant comme thème: La décoration intérieure
 
 # Description
-Ce projet est une plateforme de commerce électronique sur le thème de la décoration intérieure. Il permet aux utilisateurs de parcourir et d'acheter des produits en fonction des catégories disponibles, comme les meubles, les décorations murales ou les accessoires. Le projet est réalisé avec Symfony, un framework PHP, et suit les meilleures pratiques du développement web.
+Ce projet est une plateforme de commerce électronique sur le thème de la décoration intérieure. Il permet aux utilisateurs de parcourir et d'acheter des produits en fonction des catégories disponibles, comme les meubles, les décorations murales ou les accessoires. Une partie d'administration est mise en place pour permettre aux administrateurs de gérer au mieux le site. Le projet est réalisé avec Symfony, un framework PHP, et suit les meilleures pratiques du développement web.
 
 # Structure du projet
 ## Fonctionnalités principales
