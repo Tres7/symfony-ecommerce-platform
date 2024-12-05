@@ -31,9 +31,9 @@ class Order
     private ?User $customer = null;
 
     /**
-     * @var Collection<int, Orderitem>
+     * @var Collection<int, OrderItem>
      */
-    #[ORM\OneToMany(targetEntity: Orderitem::class, mappedBy: 'purchase')]
+    #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'purchase')]
     private Collection $orderItems;
 
     public function __construct()
@@ -95,7 +95,7 @@ class Order
     }
 
     /**
-     * @return Collection<int, Orderitem>
+     * @return Collection<int, OrderItem>
      */
     public function getOrderItems(): Collection
     {
@@ -120,7 +120,6 @@ class Order
                 $orderItem->setPurchase(null);
             }
         }
-
         return $this;
     }
 
