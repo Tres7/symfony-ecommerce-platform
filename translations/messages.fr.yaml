@@ -165,3 +165,16 @@ form:
       mime_type: "Veuillez uploader une image valide (JPEG ou PNG)."
 
 
+dashboard:
+  title: Tableau de bord
+  products_list: Liste des produits
+  add_product: Ajouter un produit
+  users_list: Liste des utilisateurs
+  total_products_by_category: Nombre total de produits par catégorie
+  latest_orders: Les 5 dernières commandes passées
+  order: Commande
+  product_availability_ratio: Ratio de disponibilité des produits
+  total_sales_by_month: Montant total des ventes réalisées par mois (12 derniers mois)
+
+
+

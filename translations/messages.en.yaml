@@ -163,3 +163,13 @@ form:
       label: "Product Images"
       mime_type: "Please upload a valid image (JPEG or PNG)."
 
+dashboard:
+  title: Dashboard
+  products_list: Product List
+  add_product: Add Product
+  users_list: User List
+  total_products_by_category: Total Products by Category
+  latest_orders: Last 5 Orders
+  order: Order
+  product_availability_ratio: Product Availability Ratio
+  total_sales_by_month: Total Sales by Month (Last 12 Months)
