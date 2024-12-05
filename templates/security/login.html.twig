@@ -22,14 +22,15 @@
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">{{ 'login.email'|trans }}</label>
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
-                           class="form-control" style="width: 100%;" autocomplete="email" required autofocus>
+                           class="form-control w-100" style="min-width: 300px;" autocomplete="email" required autofocus>
                 </div>
 
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">{{ 'login.password'|trans }}</label>
                     <input type="password" name="password" id="inputPassword"
-                           class="form-control" style="width: 100%;" autocomplete="current-password" required>
+                           class="form-control w-100" style="min-width: 300px;" autocomplete="current-password" required>
                 </div>
+
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
