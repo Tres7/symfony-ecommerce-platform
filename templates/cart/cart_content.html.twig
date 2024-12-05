@@ -1,3 +1,4 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <div data-controller="cart">
     <div class="cart-content">
         <table class="table">
@@ -20,7 +21,7 @@
                     </td>
                     <td class="subtotal">{{ item.product.price * item.quantity }} €</td>
                     <td>
-                        <button class="btn btn-danger btn-remove" data-action="click->cart#removeItem" data-product-id="{{ item.product.id }}">🗑️</button>
+                        <button class="btn btn-danger btn-remove" data-action="click->cart#removeItem" data-product-id="{{ item.product.id }}"><i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
             {% endfor %}

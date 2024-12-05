@@ -97,6 +97,8 @@ cart:
   subtotal: "Subtotal"
   actions: "Actions"
   total: "Total"
+  empty: Your cart is empty.
+
 
 
 error:

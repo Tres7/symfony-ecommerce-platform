@@ -71,15 +71,9 @@
 
                 <div class="d-flex justify-content-between align-items-center mt-4">
                     <a href="{{ path('admin_products') }}" class="btn btn-secondary">
-                        <svg class="bi me-1" width="16" height="16" fill="currentColor">
-                            <use xlink:href="#arrow-left"></use>
-                        </svg>
                         {{ 'product_form.buttons.back'|trans }}
                     </a>
                     <button class="btn btn-primary">
-                        <svg class="bi me-1" width="16" height="16" fill="currentColor">
-                            <use xlink:href="#check2-circle"></use>
-                        </svg>
                         {{ product is defined ? 'product_form.buttons.update'|trans : 'product_form.buttons.create'|trans }}
                     </button>
                 </div>

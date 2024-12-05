@@ -47,22 +47,22 @@ products:
   image_alt: Image de %name%
 
 
-  product_form:
-    header:
-      create: Ajouter un nouveau produit
-      edit: Modifier le produit
-    fields:
-      name: Nom du produit
-      price: Prix
-      description: Description
-      stock: Quantité en stock
-      status: Statut du produit
-      category: Catégorie
-      images: Image du produit
-    buttons:
-      back: Retour à la liste
-      create: Créer
-      update: Mettre à jour
+product_form:
+  header:
+    create: Ajouter un nouveau produit
+    edit: Modifier le produit
+  fields:
+    name: Nom du produit
+    price: Prix
+    description: Description
+    stock: Quantité en stock
+    status: Statut du produit
+    category: Catégorie
+    images: Image du produit
+  buttons:
+    back: Retour à la liste
+    create: Créer
+    update: Mettre à jour
 
 orders:
   list_title: Liste des commandes
@@ -99,6 +99,8 @@ cart:
   subtotal: "Sous-total"
   actions: "Actions"
   total: "Total"
+  empty: Votre panier est vide.
+
 
 error:
   403:

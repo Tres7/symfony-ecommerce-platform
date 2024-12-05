@@ -2,8 +2,17 @@
 
 {% block body %}
     <div id="cart-container">
-        {% include 'cart/cart_content.html.twig' %}
+        {% if cartDetails|length == 0 %}
+            <div class="alert alert-info">
+                {{ 'cart.empty'|trans }}
+            </div>
+        {% else %}
+            {% include 'cart/cart_content.html.twig' %}
+            <div class="d-flex justify-content-end mt-3">
+                <a href="{{ path('checkout') }}" class="btn btn-primary px-4">{{ 'cart.pay'|trans }}</a>
+            </div>
+        {% endif %}
     </div>
 
-    <a href="{{ path('checkout') }}" class="btn btn-primary">{{ 'cart.pay'|trans }}</a>
+    {% include 'partials/flash.html.twig' %}
 {% endblock %}
