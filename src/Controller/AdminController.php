@@ -135,19 +135,21 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $images = $form->get('images')->getData();
 
-            foreach ($images as $imageFile) {
-                $newFilename = uniqid('', true) . '.' . $imageFile->guessExtension();
-                $imageFile->move(
-                    $this->getParameter('images_directory'),
-                    $newFilename
-                );
+            if(is_iterable($images))
+            {
+                foreach ($images as $imageFile) {
+                    $newFilename = uniqid('', true) . '.' . $imageFile->guessExtension();
+                    $imageFile->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
 
-                $image = new Image();
-                $image->setUrl($newFilename);
-                $image->setProduct($product);
-                $entityManager->persist($image);
+                    $image = new Image();
+                    $image->setUrl($newFilename);
+                    $image->setProduct($product);
+                    $entityManager->persist($image);
+                }
             }
-
             $entityManager->flush();
 
             $this->addFlash('success', 'Produit modifié avec succès.');
