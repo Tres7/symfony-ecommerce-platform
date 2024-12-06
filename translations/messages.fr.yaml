@@ -6,7 +6,7 @@ login:
   submit: "Se connecter"
 
 header:
-  home: Maison
+  home: Accueil
   dashboard: Tableau de bord
   products_list: Liste des produits
   users_list: Liste des utilisateurs

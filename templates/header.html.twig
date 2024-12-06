@@ -74,14 +74,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('add_credit_card') }}" class="nav-link {% if app.request.get('_route') == 'credit_card_add' %}text-secondary{% else %}text-white{% endif %}">
+                        <a href="{{ path('add_credit_card') }}" class="nav-link {% if app.request.get('_route') == 'add_credit_card' %}text-secondary{% else %}text-white{% endif %}">
                             <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#credit-card"/></svg>
                             {{ 'header.add_credit_card'|trans }}
                         </a>
                     </li>
                 {% endif %}
                 <li>
-                    <a href="{{ path('dashboard_redirect') }}" class="nav-link {% if app.request.get('_route') == 'admin_dashboard' %}text-secondary{% else %}text-white{% endif %}">
+                    <a href="{{ path('dashboard_redirect') }}" class="nav-link {% if app.request.get('_route') == 'admin_dashboard' or app.request.get('_route') == 'client_dashboard'  %}text-secondary{% else %}text-white{% endif %}">
                         <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
                         {{ 'header.dashboard'|trans }}
                     </a>
