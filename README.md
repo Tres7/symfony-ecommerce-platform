@@ -41,7 +41,10 @@ Ce projet est une plateforme de commerce électronique sur le thème de la déco
 `DATABASE_URL="mysql://<username>:<password>@127.0.0.1:3306/<nom_de_la_base>"`
 ### Créer la base de données :
 `php bin/console doctrine:database:create`
+`php bin/console make:migration`
 `php bin/console doctrine:migrations:migrate`
+### Exécuter les fixtures pour ajouter les données à la base de données
+`php bin/console doctrine:fixtures:load`
 ### Installer les dépendances JS et CSS :
 `npm install`
 `npm run dev`
