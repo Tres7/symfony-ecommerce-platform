@@ -173,3 +173,15 @@ dashboard:
   order: Order
   product_availability_ratio: Product Availability Ratio
   total_sales_by_month: Total Sales by Month (Last 12 Months)
+
+
+credit_cards:
+  title: Credit Cards
+  header: Registered Credit Cards
+  table:
+    number: Number
+    expiration_date: Expiration Date
+    cvv: CVV
+    no_cards: No cards registered
+  button:
+    back: Back to Home

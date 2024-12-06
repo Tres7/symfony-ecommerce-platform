@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cartes Bancaires{% endblock %}
+{% block title %}{{ 'credit_cards.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Cartes Bancaires Enregistrées</h1>
+    <h1>{{ 'credit_cards.header'|trans }}</h1>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Numéro</th>
-            <th>Date d'expiration</th>
-            <th>CVV</th>
+            <th>{{ 'credit_cards.table.number'|trans }}</th>
+            <th>{{ 'credit_cards.table.expiration_date'|trans }}</th>
+            <th>{{ 'credit_cards.table.cvv'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -22,11 +22,14 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">Aucune carte enregistrée</td>
+                <td colspan="3">{{ 'credit_cards.table.no_cards'|trans }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('home') }}" class="btn btn-primary">Retour à l'accueil</a>
+    <div class="d-flex justify-content-left">
+        <a href="{{ path('home') }}" class="btn btn-primary px-5 py-2">{{ 'credit_cards.button.back'|trans }}</a>
+    </div>
+
 {% endblock %}

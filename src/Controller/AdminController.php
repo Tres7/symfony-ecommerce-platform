@@ -130,13 +130,10 @@ class AdminController extends AbstractController
     public function editProduct(Product $product, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ProductType::class, $product);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $images = $form->get('images')->getData();
-
-            if(is_iterable($images))
-            {
+            if ($images) {
                 foreach ($images as $imageFile) {
                     $newFilename = uniqid('', true) . '.' . $imageFile->guessExtension();
                     $imageFile->move(
@@ -162,6 +159,7 @@ class AdminController extends AbstractController
             'product' => $product,
         ]);
     }
+
 
 
 

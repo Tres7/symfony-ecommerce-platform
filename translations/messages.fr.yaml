@@ -177,4 +177,16 @@ dashboard:
   total_sales_by_month: Montant total des ventes réalisées par mois (12 derniers mois)
 
 
+credit_cards:
+  title: Cartes Bancaires
+  header: Cartes Bancaires Enregistrées
+  table:
+    number: Numéro
+    expiration_date: Date d'expiration
+    cvv: CVV
+    no_cards: Aucune carte enregistrée
+  button:
+    back: Retour à l'accueil
+
+
 
