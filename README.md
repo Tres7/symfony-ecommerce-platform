@@ -9,17 +9,24 @@ Ce projet est une plateforme de commerce électronique sur le thème de la déco
 - Inscription et connexion.
 - Gestion du compte utilisateur.
 - Ajout et gestion des articles dans le panier.
-### Produits :
-- Liste des produits filtrée par catégories.
-- Détails d’un produit.
+### Catalogue des produits (Boutique) :
+- Liste des produits.
 - Ajout au panier.
+### Panier
+- Ajout, suppression, et modification des quantités des produits.
+- Calcul automatique du sous-total et du total.
+- Paiement.
+### Ajout et gestion des cartes bancaires
+- Les utilisateurs peuvent enregistrer plusieurs cartes bancaires sans rechargement de la page.
+- Validation automatique du numéro de carte, de la date d'expiration, et du code CVV.
+- Après enregistrement de ou des cartes, affichage des cartes enregistrées (seules les 4 dernières chiffres sont visibles).
 ### Commandes :
 - Gestion des commandes passées.
 - Statut des commandes visible dans le tableau de bord utilisateur.
 ### Administration :
 - Gestion des produits (ajout, modification, suppression).
-- Gestion des utilisateurs.
-- Dashboard pour les statistiques (commandes, produits, etc.).
+- Gestion des utilisateurs et de leurs commandes.
+- Tableau de bord pour les statistiques (Suivi des ventes par catégorie et par mois.).
 ### Technologies utilisées
 - Backend : Symfony (PHP)
 - Base de données : MySQL
@@ -63,10 +70,3 @@ Le projet inclut un système de traduction avec les langues suivantes :
 - Français (par défaut).
 - Anglais.
 Pour modifier ou ajouter des traductions, modifiez les fichiers dans translations/messages.{locale}.yaml. Comme exemple, nous pouvons avoir messages.fr.yaml.
-
-### Aperçu
-- **Page d'accueil** : Affiche une liste des produits disponibles, triés par catégories.
-
-- **Panier** : Les utilisateurs peuvent ajouter des produits au panier et finaliser leur commande après s'être connectés.
-
-- **Tableau de bord Administrateur** : Un tableau de bord pour suivre les statistiques et gérer les produits et utilisateurs.
