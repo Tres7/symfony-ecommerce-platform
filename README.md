@@ -71,3 +71,6 @@ Le projet inclut un système de traduction avec les langues suivantes :
 - Français (par défaut).
 - Anglais.
 Pour modifier ou ajouter des traductions, modifiez les fichiers dans translations/messages.{locale}.yaml. Comme exemple, nous pouvons avoir messages.fr.yaml.
+
+## Lien vers la vidéo de démonstration
+https://drive.google.com/file/d/1RwOl4rPVTde8hYRMIVc5OJcuSAwxtjet/view?usp=sharing
