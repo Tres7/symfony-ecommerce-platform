@@ -108,7 +108,6 @@ class CreditCardFormComponent extends AbstractController
 
         $entityManager->persist($user);
         $entityManager->flush();
-
         $this->addFlash('success', 'Les cartes ont été enregistrées avec succès !');
 
         return $this->redirectToRoute('credit_cards');

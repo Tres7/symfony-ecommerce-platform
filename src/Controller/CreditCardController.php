@@ -17,10 +17,7 @@ class CreditCardController extends AbstractController
     #[Route('/credit-cards', name: 'credit_cards')]
     public function list(EntityManagerInterface $entityManager): Response
     {
-        // Récupérer toutes les cartes enregistrées
         $creditCards = $entityManager->getRepository(CreditCard::class)->findAll();
-
-        // Renvoyer la vue avec les cartes
         return $this->render('credit_card/list.html.twig', [
             'creditCards' => $creditCards,
         ]);

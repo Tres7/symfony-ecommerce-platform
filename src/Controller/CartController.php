@@ -254,7 +254,6 @@ class CartController extends AbstractController
         }
         $order = new Order();
         $order->setCustomer($this->getUser());
-        // Dans la méthode checkout()
         $orderCount = $entityManager->getRepository(Order::class)->count([]);
         $year = (new \DateTime())->format('Y');
         $reference = sprintf('ORD-%s-%04d', $year, $orderCount + 1);
@@ -289,8 +288,6 @@ class CartController extends AbstractController
         $entityManager->flush();
 
         $session->remove('cart');
-
-        // Rediriger vers une page de confirmation
         $this->addFlash('success', 'Votre commande a été passée avec succès.');
         return $this->redirectToRoute('home');
     }
