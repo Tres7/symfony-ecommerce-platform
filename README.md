@@ -11,6 +11,7 @@ Ce projet est une plateforme de commerce électronique sur le thème de la déco
 - Ajout et gestion des articles dans le panier.
 ### Catalogue des produits (Boutique) :
 - Liste des produits.
+- Recherche de produits pour faciliter le repérage
 - Ajout au panier.
 ### Panier
 - Ajout, suppression, et modification des quantités des produits.
