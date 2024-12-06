@@ -51,7 +51,7 @@ Ce projet est une plateforme de commerce électronique sur le thème de la déco
 
 ### Lancer le serveur Symfony :
 `symfony serve` ou `symfony serve:start` 
-Le projet sera accessible à l'adresse http://localhost:8000.
+Le projet sera accessible à l'adresse http://localhost:8000/home.
 
 ## Fonctionnalités d'administration
 ### Pour accéder aux fonctionnalités d'administration, connectez-vous avec un compte ayant le rôle ROLE_ADMIN. Les fonctionnalités incluent :
@@ -62,7 +62,7 @@ Le projet sera accessible à l'adresse http://localhost:8000.
 Le projet inclut un système de traduction avec les langues suivantes :
 - Français (par défaut).
 - Anglais.
-Pour modifier ou ajouter des traductions, modifiez les fichiers dans translations/messages.{locale}.yaml.
+Pour modifier ou ajouter des traductions, modifiez les fichiers dans translations/messages.{locale}.yaml. Comme exemple, nous pouvons avoir messages.fr.yaml.
 
 ### Aperçu
 - **Page d'accueil** : Affiche une liste des produits disponibles, triés par catégories.
