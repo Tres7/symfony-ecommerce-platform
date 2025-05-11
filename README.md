@@ -74,3 +74,7 @@ Pour modifier ou ajouter des traductions, modifiez les fichiers dans translation
 
 ## Lien vers la vidéo de démonstration
 https://drive.google.com/file/d/1RwOl4rPVTde8hYRMIVc5OJcuSAwxtjet/view?usp=sharing
+
+## 🎓 Évaluation académique
+Projet réalisé dans le cadre d’un travail universitaire.  
+Note obtenue : **16,5 / 20**
